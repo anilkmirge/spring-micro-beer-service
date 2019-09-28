@@ -1,1 +1,3 @@
-# spring-micro-beer-service
+#Spring Beer Service
+
+Spring Boot Microservice Example 
