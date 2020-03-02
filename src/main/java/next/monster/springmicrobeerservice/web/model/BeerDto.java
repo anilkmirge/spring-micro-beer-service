@@ -18,7 +18,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BeerDto {
 
-  @Null //We don't want somebody else setting these read only properties from the outside world
+  // Why we need @Null?
+  // We don't want somebody else setting these read only properties from the outside world
+  @Null
   private UUID id;
 
   @Null
