@@ -1,6 +1,9 @@
 package next.monster.springmicrobeerservice.web.model;
 
-import javax.validation.constraints.NotEmpty;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.UUID;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
@@ -9,17 +12,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.OffsetDateTime;
-import java.util.UUID;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class BeerDto {
 
-  @Null
+  @Null //We don't want somebody else setting these read only properties from the outside world
   private UUID id;
 
   @Null
@@ -31,7 +30,7 @@ public class BeerDto {
   @Null
   private OffsetDateTime lastModifiedDate;
 
-  @NotEmpty
+  @NotBlank
   private String beerName;
 
   @NotNull
