@@ -23,6 +23,7 @@ class BeerControllerTest {
 
   @Autowired
   ObjectMapper objectMapper;
+
   @Test
   void getBeerById() throws Exception {
     mockMvc.perform(get("/api/v1/beer/" +
