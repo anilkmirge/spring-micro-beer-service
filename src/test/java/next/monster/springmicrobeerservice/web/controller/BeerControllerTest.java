@@ -1,7 +1,9 @@
 package next.monster.springmicrobeerservice.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.math.BigDecimal;
 import next.monster.springmicrobeerservice.web.model.BeerDto;
+import next.monster.springmicrobeerservice.web.model.BeerStyleEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -30,8 +32,8 @@ class BeerControllerTest {
 
   @Test
   void saveNewBeer() throws Exception {
-    BeerDto savedBeer = BeerDto.builder().build();
-    String beerToJson = objectMapper.writeValueAsString(savedBeer);
+    BeerDto newBeer = getValidBeer();
+    String beerToJson = objectMapper.writeValueAsString(newBeer);
 
     mockMvc.perform(post("/api/v1/beer")
         .contentType(MediaType.APPLICATION_JSON)
@@ -41,12 +43,21 @@ class BeerControllerTest {
 
   @Test
   void updateBeerById() throws Exception{
-    BeerDto savedBeer = BeerDto.builder().build();
+    BeerDto savedBeer = getValidBeer();
     String beerToJson = objectMapper.writeValueAsString(savedBeer);
 
     mockMvc.perform(put("/api/v1/beer/" + UUID.randomUUID().toString())
         .contentType(MediaType.APPLICATION_JSON)
         .content(beerToJson))
         .andExpect(status().isNoContent());
+  }
+
+  BeerDto getValidBeer() {
+    return BeerDto.builder()
+        .beerName("My Custom Beer")
+        .price(new BigDecimal("2.99"))
+        .beerStyle(BeerStyleEnum.ALE)
+        .upc(47234347L)
+        .build();
   }
 }
