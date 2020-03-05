@@ -1,3 +1,3 @@
-# Spring Beer Service
+# Beer Microservice Service
 
-Spring Boot Microservice Example 
+This microservice is responsible for handling all the back end services.
